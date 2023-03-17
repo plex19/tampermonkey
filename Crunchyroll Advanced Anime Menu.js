@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Crunchyroll Advanced Anime Menu
 // @namespace    http://tampermonkey.net/
-// @version      0.1
+// @version      0.2
 // @description  Adds a button on Crunchyroll site to search anime title on AniSearch site
 // @author       Plex19
 // @match        https://www.crunchyroll.com/*
@@ -25,11 +25,42 @@
     button.style.backgroundColor = '#f47521';
     button.style.padding = "3px";
 
-    document.body.appendChild(button);
+
+    var button1 = document.createElement("button");
+    button1.innerHTML = "AniList - Highest Rate";
+    button1.style.position = "fixed";
+    button1.style.bottom = "35px";
+    button1.style.right = "20px";
+    button1.style.backgroundColor = '#f47521';
+    button1.style.padding = "3px";
+
+    var button2 = document.createElement("button");
+    button2.innerHTML = "AniList - Highest Rate (All Time)";
+    button2.style.position = "fixed";
+    button2.style.bottom = "10px";
+    button2.style.right = "20px";
+    button2.style.backgroundColor = '#f47521';
+    button2.style.padding = "3px";
+
+    var container = document.createElement("div");
+    document.body.appendChild(container);
+    container.appendChild(button);
+    container.appendChild(button1);
+    container.appendChild(button2);
 
      // Add a click event listener to the button
     button.addEventListener ("click", function() {
         //window.location.href = "https://www.anisearch.de/anime/index?text=" + title;
         window.open('https://www.anisearch.de/anime/index?text=' + title[0]).focus();
+    });
+
+    button1.addEventListener ("click", function() {
+        //window.location.href = "https://www.anisearch.de/anime/index?text=" + title;
+        window.open('https://anilist.co/search/anime?sort=SCORE_DESC&format=TV&year=2023%25').focus();
+    });
+
+    button2.addEventListener ("click", function() {
+    //window.location.href = "https://www.anisearch.de/anime/index?text=" + title;
+    window.open('https://anilist.co/search/anime?sort=SCORE_DESC&format=TV').focus();
     });
 })();
